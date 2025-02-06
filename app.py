@@ -48,11 +48,8 @@ def get_context_retriver_chain(vector_store):
 def get_vectorstore_from_url(url):
     loader=WebBaseLoader(url)
     document=loader.load()
-
-
     text_splitter=RecursiveCharacterTextSplitter()
     document_chunks=text_splitter.split_documents(document)
-
     vector_store=Chroma.from_documents(document_chunks,OpenAIEmbeddings(),persist_directory="./db")
     return vector_store
 
